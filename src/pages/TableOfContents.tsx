@@ -70,7 +70,7 @@ const TableOfContents = () => {
         {/* Footer */}
         <div className="text-center mt-12 py-8">
           <p className="text-red-600 text-sm font-medium">
-            App developed by: Hom Bahadur Thapa
+            संकलन तथा एप निर्माण: होम बहादुर थापा
           </p>
         </div>
       </div>
