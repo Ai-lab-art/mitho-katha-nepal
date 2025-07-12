@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Facebook, MessageCircle, Instagram, Share2, X } from "lucide-react";
+import { Facebook, MessageCircle, Share2, X } from "lucide-react";
 import { useState } from "react";
 
 interface ShareButtonsProps {
@@ -18,25 +18,6 @@ const ShareButtons = ({
   showFloatingButton = false
 }: ShareButtonsProps) => {
   const [showShareOptions, setShowShareOptions] = useState(false);
-
-  const shareData = {
-    title,
-    text,
-    url
-  };
-
-  const handleNativeShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-      } catch (err) {
-        console.log('Error sharing:', err);
-      }
-    } else {
-      navigator.clipboard.writeText(url);
-      alert('लिंक कपी भयो!');
-    }
-  };
 
   const shareToFacebook = () => {
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
@@ -96,14 +77,6 @@ const ShareButtons = ({
                     Messenger
                   </Button>
                   <Button
-                    onClick={handleNativeShare}
-                    className="bg-gray-600 hover:bg-gray-700 text-white flex items-center justify-start px-4 py-2"
-                    size="sm"
-                  >
-                    <Share2 className="w-4 h-4 mr-2" />
-                    अन्य
-                  </Button>
-                  <Button
                     onClick={() => setShowShareOptions(false)}
                     variant="outline"
                     className="border-red-300 text-red-700 hover:bg-red-50 flex items-center justify-center px-4 py-2"
@@ -146,14 +119,6 @@ const ShareButtons = ({
       >
         <MessageCircle className="w-4 h-4 mr-2" />
         Messenger
-      </Button>
-      <Button
-        onClick={handleNativeShare}
-        className="bg-gray-600 hover:bg-gray-700 text-white flex items-center px-4 py-2"
-        size="sm"
-      >
-        <Share2 className="w-4 h-4 mr-2" />
-        साझा गर्नुहोस्
       </Button>
     </div>
   );
