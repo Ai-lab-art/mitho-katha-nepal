@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Share2 } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { stories } from "@/data/stories";
 import { useState } from "react";
@@ -41,6 +41,26 @@ const StoryPage = () => {
     }
   };
 
+  const handleShare = async () => {
+    const shareData = {
+      title: story.title,
+      text: `${story.title} - मिठो कथा नेपाल`,
+      url: window.location.href
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.log('Error sharing:', err);
+      }
+    } else {
+      // Fallback: copy to clipboard
+      navigator.clipboard.writeText(window.location.href);
+      alert('कथाको लिंक कपी भयो!');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-100 via-red-50 to-yellow-100 p-4">
       <div className="max-w-4xl mx-auto">
@@ -62,26 +82,37 @@ const StoryPage = () => {
         </div>
 
         {/* Story Content */}
-        <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-2 border-red-200">
-          <CardContent className="p-8">
-            {/* Story Image */}
-            <div className="text-center mb-8">
-              <div className="w-64 h-64 mx-auto bg-gradient-to-br from-red-400 to-orange-400 rounded-2xl flex items-center justify-center shadow-lg">
-                <span className="text-8xl">{story.emoji}</span>
+        <div className="relative">
+          <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-2 border-red-200">
+            <CardContent className="p-8">
+              {/* Story Image */}
+              <div className="text-center mb-8">
+                <div className="w-64 h-64 mx-auto bg-gradient-to-br from-red-400 to-orange-400 rounded-2xl flex items-center justify-center shadow-lg">
+                  <span className="text-8xl">{story.emoji}</span>
+                </div>
+                <p className="text-red-600 text-sm mt-2 italic">{currentContent.imageCaption}</p>
               </div>
-              <p className="text-red-600 text-sm mt-2 italic">{currentContent.imageCaption}</p>
-            </div>
 
-            {/* Story Text */}
-            <div className="prose prose-lg max-w-none">
-              <div className="text-red-900 leading-relaxed text-lg space-y-4">
-                {currentContent.text.split('\n\n').map((paragraph, index) => (
-                  <p key={index} className="mb-4">{paragraph}</p>
-                ))}
+              {/* Story Text */}
+              <div className="prose prose-lg max-w-none">
+                <div className="text-red-900 leading-relaxed text-lg space-y-4">
+                  {currentContent.text.split('\n\n').map((paragraph, index) => (
+                    <p key={index} className="mb-4">{paragraph}</p>
+                  ))}
+                </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+
+          {/* Share Button - Floating */}
+          <Button
+            onClick={handleShare}
+            className="fixed bottom-6 right-6 bg-red-600 hover:bg-red-700 text-white rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-200 z-10"
+            size="icon"
+          >
+            <Share2 className="w-6 h-6" />
+          </Button>
+        </div>
 
         {/* Navigation */}
         <div className="flex items-center justify-between mt-8">
