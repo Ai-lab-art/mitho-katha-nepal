@@ -1,10 +1,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, ArrowRight, BookOpen, Share2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { stories } from "@/data/stories";
 import { useState } from "react";
+import ShareButtons from "@/components/ShareButtons";
 
 const StoryPage = () => {
   const navigate = useNavigate();
@@ -38,26 +39,6 @@ const StoryPage = () => {
   const prevPage = () => {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const handleShare = async () => {
-    const shareData = {
-      title: story.title,
-      text: `${story.title} - मिठो कथा नेपाल`,
-      url: window.location.href
-    };
-
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-      } catch (err) {
-        console.log('Error sharing:', err);
-      }
-    } else {
-      // Fallback: copy to clipboard
-      navigator.clipboard.writeText(window.location.href);
-      alert('कथाको लिंक कपी भयो!');
     }
   };
 
@@ -104,14 +85,13 @@ const StoryPage = () => {
             </CardContent>
           </Card>
 
-          {/* Share Button - Floating */}
-          <Button
-            onClick={handleShare}
-            className="fixed bottom-6 right-6 bg-red-600 hover:bg-red-700 text-white rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-200 z-10"
-            size="icon"
-          >
-            <Share2 className="w-6 h-6" />
-          </Button>
+          {/* Floating Share Buttons */}
+          <ShareButtons
+            title={story.title}
+            text={`${story.title} - मिठो कथा नेपाल`}
+            url={window.location.href}
+            showFloatingButton={true}
+          />
         </div>
 
         {/* Navigation */}

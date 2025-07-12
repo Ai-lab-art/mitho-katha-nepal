@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { BookOpen, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import ShareButtons from "@/components/ShareButtons";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -42,6 +43,12 @@ const Index = () => {
             १० रोचक नेपाली बालकथाहरूको संग्रह। प्रत्येक कथा लगभग ५ मिनेट लामो छ र 
             सुन्दर चित्रहरूसँग सजाइएको छ। बच्चाहरूका लागि शिक्षाप्रद र मनोरञ्जक कथाहरू।
           </p>
+        </div>
+
+        {/* Social Media Share Buttons */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+          <p className="text-red-800 text-sm font-medium mb-4">यो एप साझा गर्नुहोस्:</p>
+          <ShareButtons />
         </div>
 
         {/* Developer Credit */}
