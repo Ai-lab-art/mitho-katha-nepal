@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Facebook, MessageCircle, Share2, X } from "lucide-react";
@@ -43,7 +42,6 @@ const ShareButtons = ({
           className="fixed bottom-6 right-6 bg-red-600 hover:bg-red-700 text-white rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-200 z-20"
           size="icon"
         >
-          <Share2 className="w-6 h-6" />
         </Button>
 
         {/* Share Options Popup */}
