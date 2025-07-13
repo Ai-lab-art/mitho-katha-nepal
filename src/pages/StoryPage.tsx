@@ -5,7 +5,6 @@ import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { stories } from "@/data/stories";
 import { useState } from "react";
-import ShareButtons from "@/components/ShareButtons";
 
 const StoryPage = () => {
   const navigate = useNavigate();
@@ -84,14 +83,6 @@ const StoryPage = () => {
               </div>
             </CardContent>
           </Card>
-
-          {/* Floating Share Buttons */}
-          <ShareButtons
-            title={story.title}
-            text={`${story.title} - मिठो कथा नेपाल`}
-            url={window.location.href}
-            showFloatingButton={true}
-          />
         </div>
 
         {/* Navigation */}
