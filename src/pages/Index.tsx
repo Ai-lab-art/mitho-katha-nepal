@@ -40,7 +40,7 @@ const Index = () => {
         {/* Description */}
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
           <p className="text-red-800 text-sm leading-relaxed">
-            १० रोचक नेपाली बालकथाहरूको संग्रह। प्रत्येक कथा लगभग ५ मिनेट लामो छ र 
+            २० रोचक नेपाली बालकथाहरूको संग्रह। प्रत्येक कथा लगभग ५ मिनेट लामो छ र 
             सुन्दर चित्रहरूसँग सजाइएको छ। बच्चाहरूका लागि शिक्षाप्रद र मनोरञ्जक कथाहरू।
           </p>
         </div>
