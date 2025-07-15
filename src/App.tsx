@@ -5,8 +5,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import FairyTales from "./pages/FairyTales";
-import FairyTalePage from "./pages/FairyTalePage";
+import TableOfContents from "./pages/TableOfContents";
+import StoryPage from "./pages/StoryPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -19,8 +19,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/fairytales" element={<FairyTales />} />
-          <Route path="/fairytale/:id" element={<FairyTalePage />} />
+          <Route path="/stories" element={<TableOfContents />} />
+          <Route path="/story/:id" element={<StoryPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
